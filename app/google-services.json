@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "816978203029",
+    "firebase_url": "https://tutorial0716.firebaseio.com",
+    "project_id": "tutorial0716",
+    "storage_bucket": "tutorial0716.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816978203029:android:e433c22744d85d1d",
+        "android_client_info": {
+          "package_name": "com.example.alstn0107.howlfirebaseauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816978203029-6her9fpg7g8h3pf5tbsn01n0171m1ucm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alstn0107.howlfirebaseauth",
+            "certificate_hash": "196d5fc20d1b8b8f7dcc3f7e10b0e67f22f8c4c0"
+          }
+        },
+        {
+          "client_id": "816978203029-qblgqqqqfq3kar3j2lof8ru9crbhc38f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSMsZ4BGVr13mMTCDHPY7DwFLRIb2HXV0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816978203029-qblgqqqqfq3kar3j2lof8ru9crbhc38f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
