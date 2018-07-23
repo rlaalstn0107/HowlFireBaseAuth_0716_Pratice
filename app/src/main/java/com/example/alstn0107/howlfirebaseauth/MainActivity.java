@@ -33,13 +33,14 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    private static final int RC_SIGN_IN = 10;
     private GoogleSignInClient mGoogleSignInClient;
+    private static final int RC_SIGN_IN = 10;
     private FirebaseAuth mAuth;
 
     private EditText editTextEmail;
     private EditText editTextPassword;
     private CallbackManager mCallbackManager;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,8 +108,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+
                         } else {
                             Toast.makeText(MainActivity.this, "FaceBook 아이디 연동 성공", Toast.LENGTH_SHORT).show();
+                            
                         }
                     }
                 });
@@ -117,18 +120,35 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
 
-    private void createUser(String email,String password){
+    private void createUser(final String email, final String password){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            loginUser(email, password);
                             Toast.makeText(MainActivity.this, "회원가입 실패", Toast.LENGTH_SHORT).show();
 
                         } else {
                             Toast.makeText(MainActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
-                            
+
+                        }
+
+                        // ...
+                    }
+                });
+    }
+    private void loginUser(String email,String password){
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+
+                        } else {
+                            Toast.makeText(MainActivity.this, "이메일 로그인 완료", Toast.LENGTH_SHORT).show();
                         }
 
                         // ...
