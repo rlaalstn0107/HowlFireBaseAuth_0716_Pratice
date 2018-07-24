@@ -29,6 +29,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -96,6 +97,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 // ...
             }
         });
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user=firebaseAuth.getCurrentUser();
+                if(user!=null){
+                    Intent intent=new Intent(MainActivity.this,HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }else{
+
+                }
+            }
+        };
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
@@ -195,5 +211,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();;
+        if(mAuthListener !=null){
+            mAuth.removeAuthStateListener(mAuthListener);
+
+        }
+    }
+
 
 }
